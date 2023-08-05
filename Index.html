@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi"> <!-- Đổi lang="en" thành lang="vi" -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinLearn - Học Tài Chính Cá Nhân</title>
+
+    <!-- CSS for Styling -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+     
+        header {
+            position: relative;
+            background-color: #f0f0f0;
+            padding: 5px 5px; /* Adjust the padding for a smaller header height */
+            text-align: center;
+            overflow: hidden; /* Prevent content from overlapping the image */
+        }
+
+        img {
+            width: 100%;
+            height: 200px; /* Adjust the height of the image as desired */
+            object-fit: cover;
+        }
+
+        #language-selection {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .btn-radio {
+            background: none;
+            border: 1px solid #555; /* Add border to the button */
+            border-radius: 20px; /* Add border-radius to create rounded corners */
+            padding: 5px 10px;
+            cursor: pointer;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-radio img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .btn-radio.active {
+            background-color: #555;
+            color: white;
+            filter: invert(100%);
+        }
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-transform: uppercase;
+            color: white;
+            font-size: 50px;
+            margin: 0;
+            padding: 0;
+            z-index: 1; /* Ensure the title is above the background image */
+        }
+
+    main {
+        padding: 10px; /* Thêm padding để tạo khoảng cách giữa nội dung và viền của phần 'main' */
+    }
+
+    section {
+        margin: 40px; /* Điều chỉnh lề phần tử 'section' bên trong 'main' */
+        max-width: 800px; /* Giới hạn chiều rộng của phần tử 'section' để nội dung không bị quá rộng */
+    text-align: justify; /* Để văn bản trong phần 'section' hiển thị theo kiểu justify */
+    }
+ /* Override last line alignment to prevent large spaces between words */
+    section:after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="https://paas-s3-broker-prod-lon-2edbd31f-65e0-4d35-9755-fde7c3b1b292.s3.amazonaws.com/images/Financial_HdD76AH.2e16d0ba.fill-1920x622.png" alt="FinLearn Header">
+        <h1>FinLearn</h1>
+        <div id="language-selection">
+            <button class="btn-radio" onclick="switchLanguage()">
+                <img id="language-icon" src="https://www.vietcap.com.vn/assets/icons/flag-vi.svg" loading="lazy">
+                <span class="text-uppercase" id="language-text">vi</span>
+            </button>
+        </div>
+        <p data-lang="vi">Giáo dục tài chính cá nhân toàn diện</p>
+        <p data-lang="en">Comprehensive Personal Finance Education</p>
+    </header>
+
+   <!-- Main Content Section -->
+    <main>
+        <section>
+            <h2 data-lang="en">Personal finance knowledge</h2>
+            <h2 data-lang="vi">Kiến thức tài chính cá nhân</h2>
+            <p data-lang="en">Choose from a range of courses covering budgeting, investing, credit management, and more.</p>
+           <p data-lang="en">Empower yourself with essential personal finance knowledge and skills. Explore a variety of courses that cover budgeting, investing, credit management, and more.</p>
+            <p data-lang="vi">Cung cấp cho bạn những kiến thức và kỹ năng tài chính cá nhân cần thiết. Khám phá một loạt các khóa học bao gồm lập kế hoạch ngân sách, đầu tư, quản lý tín dụng và nhiều hơn nữa.</p>
+            <a href="#" data-lang="vi" id="explore-courses-vi">Hãy chọn từ một loạt các khóa học</a>
+        </section>
+
+
+        <section>
+            <h2 data-lang="en">Interactive Budget Planner</h2>
+            <h2 data-lang="vi">Bộ lập kế hoạch ngân sách tương tác</h2>
+            <p data-lang="en">Create a personalized budget based on your income, expenses, and financial goals.</p>
+            <p data-lang="vi">Tạo ngân sách cá nhân dựa trên thu nhập, chi tiêu và mục tiêu tài chính của bạn.</p>
+            <a href="#" data-lang="en" id="start-budgeting-en">Start Budgeting</a>
+            <a href="#" data-lang="vi" id="start-budgeting-vi">Bắt đầu lập kế hoạch ngân sách</a>
+        </section>
+
+        <section>
+            <h2 data-lang="en">Investment Simulator</h2>
+            <h2 data-lang="vi">Mô phỏng đầu tư</h2>
+            <p data-lang="en">Practice investing in the stock market and other financial instruments without real money.</p>
+            <p data-lang="vi">Thực hành đầu tư trên thị trường chứng khoán và các công cụ tài chính khác mà không rủi ro tiền thật.</p>
+            <a href="#" data-lang="en" id="start-simulating-en">Start Simulating</a>
+            <a href="#" data-lang="vi" id="start-simulating-vi">Bắt đầu mô phỏng đầu tư</a>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2023 FinLearn. All rights reserved.</p>
+    </footer>
+<!-- JavaScript for Language Switching -->
+  <script>
+        // Lấy giá trị ngôn ngữ từ local storage (nếu có)
+        var language = localStorage.getItem('language') || 'vi';
+
+        // Hàm để chuyển đổi ngôn ngữ
+function switchLanguage() {
+    var elementsEn = document.querySelectorAll('[data-lang="en"]');
+    var elementsVi = document.querySelectorAll('[data-lang="vi"]');
+
+    if (language === 'vi') {
+        // Hide Vietnamese elements and show English elements
+        for (var i = 0; i < elementsVi.length; i++) {
+            elementsVi[i].style.display = 'none';
+        }
+        for (var j = 0; j < elementsEn.length; j++) {
+            elementsEn[j].style.display = 'block';
+        }
+        // Change the button to show English flag and text
+        language = 'en';
+        document.getElementById('language-icon').src = 'https://www.vietcap.com.vn/assets/icons/flag-eng.svg';
+        document.getElementById('language-text').innerText = 'EN';
+        localStorage.setItem('language', 'en'); // Lưu ngôn ngữ vào local storage
+    } else if (language === 'en') {
+        // Hide English elements and show Vietnamese elements
+        for (var k = 0; k < elementsEn.length; k++) {
+            elementsEn[k].style.display = 'none';
+        }
+        for (var l = 0; l < elementsVi.length; l++) {
+            elementsVi[l].style.display = 'block';
+        }
+        // Change the button to show Vietnamese flag and text
+        language = 'vi';
+        document.getElementById('language-icon').src = 'https://www.vietcap.com.vn/assets/icons/flag-vi.svg';
+        document.getElementById('language-text').innerText = 'VI';
+        localStorage.setItem('language', 'vi'); // Lưu ngôn ngữ vào local storage
+    }
+}
+ // Function to get brightness level from RGB values
+    function getBrightness(r, g, b) {
+        return (r * 299 + g * 587 + b * 114) / 1000;
+    }
+
+    // Function to update button and text color based on the background color
+    function updateButtonColor() {
+        const header = document.querySelector('header');
+        const button = document.querySelector('.btn-radio');
+        const buttonText = document.querySelector('#language-text');
+        const headerStyles = getComputedStyle(header);
+        const backgroundColor = headerStyles.backgroundColor;
+
+        // Get RGB values from background color
+        const [, r, g, b] = backgroundColor.match(/(\d+)/g);
+
+        // Calculate brightness
+        const brightness = getBrightness(parseInt(r), parseInt(g), parseInt(b));
+
+        // Update button and text color based on the background brightness
+        if (brightness >= 128) {
+            button.style.backgroundColor = 'transparent';
+            button.style.borderColor = '#555';
+            buttonText.style.color = '#555';
+        } else {
+            button.style.backgroundColor = '#555';
+            button.style.borderColor = '#555';
+            buttonText.style.color = 'white';
+        }
+    }
+
+    // Call the function once on page load and also whenever the language is switched
+    updateButtonColor();
+        // Thực hiện chuyển đổi ngôn ngữ khi tải trang
+        window.onload = switchLanguage;
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
